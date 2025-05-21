@@ -11,6 +11,9 @@ s.platform          = :ios, '8.0'
 s.swift_versions    = ['5.0']
 s.source            = {:git => 'https://github.com/eggswift/ESTabBarController.git', :tag => s.version}
 s.source_files      = ['Sources/**/*.{swift}']
-s.resources         = ['Sources/**/*.{lproj}']
+s.resource_bundles  = {
+	'ESTabBarController' => ['Sources/**/*.{lproj}']
+} 
 s.requires_arc      = true
+s.static_framework  = true
 end

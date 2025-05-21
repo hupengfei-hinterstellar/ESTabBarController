@@ -443,15 +443,23 @@ internal extension ESTabBar /* Actions */ {
                     accessibilityTitle = item.accessibilityLabel ?? item.title ?? ""
                 }
                 if self.isMoreItem(idx) {
-                    accessibilityTitle = NSLocalizedString("More_TabBarItem", bundle: Bundle(for:ESTabBarController.self), comment: "")
+                    accessibilityTitle = NSLocalizedString("More_TabBarItem", bundle: Bundle.localized, comment: "")
                 }
                 
                 let formatString = NSLocalizedString(item == selectedItem ? "TabBarItem_Selected_AccessibilityLabel" : "TabBarItem_AccessibilityLabel",
-                                                     bundle: Bundle(for: ESTabBarController.self),
+                                                     bundle: Bundle.localized,
                                                      comment: "")
                 container.accessibilityLabel = String(format: formatString, accessibilityTitle, idx + 1, tabBarItems.count)
             }
             
         }
+    }
+}
+
+extension Bundle {
+    class var localized: Bundle {
+        let bundlePath = Bundle.main.path(forResource: "ESTabBarController", ofType: "bundle")
+        guard let bundlePath else { return .main }
+        return Bundle(path: bundlePath) ?? .main
     }
 }
