@@ -458,8 +458,12 @@ internal extension ESTabBar /* Actions */ {
 
 extension Bundle {
     class var localized: Bundle {
+#if SWIFT_PACKAGE
+        return Bundle.module
+#else
         let bundlePath = Bundle.main.path(forResource: "ESTabBarController", ofType: "bundle")
         guard let bundlePath else { return .main }
         return Bundle(path: bundlePath) ?? .main
+#endif
     }
 }
